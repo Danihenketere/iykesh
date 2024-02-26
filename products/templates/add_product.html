@@ -1,0 +1,205 @@
+{% extends 'base2.html' %}
+
+{% block content %}
+	<div class="container">
+		<h1>Add Product </h1>
+		{% include 'partials/_message.html' %}
+		<div class="card">
+			<div class="card-body">
+				<form enctype="multipart/form-data" action="{% url 'add_product' %}" method="post">
+					{% csrf_token %}
+			<div class="row">
+				<div class="col-md-8" >
+			<div class="form-group">
+			<label>Product Name</label>
+			<input 
+			class=" form form-control form-control-sm" 
+			type="text" 
+			name="product_name"
+			required="" 
+			placeholder="Product Name">
+
+			</div>
+			<div class="row">
+			<div class="col-md-6">
+			<div class="form-group">
+			<select id="slct1"  
+			class=" form form-control form-control-sm" 
+			name="" required="">
+				<option>Select Category</option>
+				<option value="Material">Material</option>
+				<option value="Foam">Foam</option>
+				<option value="Tool">Tool</option>
+				<option value="Wood">Wood</option>
+			</select>
+			</div>
+			</div>
+
+			<div class="col-md-6">
+			<div class="form-group">
+				<input id="slctd" 
+				required="" 
+				class="form-control form-control-sm" 
+				type="text" 
+				name="category"
+				placeholder="Type in the category">
+
+			</div>
+			</div>
+			</div>
+			<div class="row">
+			<div class="col-md-6">
+			<div class="form-group">
+			<select id="slct2"  
+			class=" form form-control form-control-sm" 
+			name="" >
+			</select>
+			</div>
+			</div>
+			<div class="col-md-6">
+			<div class="form-group">
+				<input id="slctd1" 
+				
+				class="form-control form-control-sm" 
+				type="text" 
+				name="sub-category"
+				placeholder="Type in the sub-category">
+
+			</div>
+			</div>
+			</div>
+
+			<div class="row">
+			<div class="col-md-6">
+			<div class="form-group">
+			<select id="slctd2"  
+			class=" form form-control form-control-sm" 
+			name="" required="">
+				<option>Select Mode of Sales</option>
+				<option value="Yard">Yard</option>
+				<option value="Inche">Inche</option>
+				<option value="Meter">Meter</option>
+				<option value="Pounds Weight">Pounds Weight</option>
+				<option value="Packet">Packet</option>
+				<option value="Roll">Roll</option>
+				<option value="Piece">Piece</option>
+				<option value="Length">Length</option>
+				<option value="Carton">Carton</option>
+				<option value="Litre">Litre</option>
+				<option value="Gallon">Gallon</option>
+				<option value="Bundle">Bundle</option>
+			</select>
+			</div>
+			</div>
+			<div class="col-md-6">
+			<div class="form-group">
+				<input id="slctd3" 
+				required="" 
+				class="form-control form-control-sm" 
+				type="text" 
+				name="mode"
+				placeholder="Type in the mode of Sales">
+
+			</div>
+			</div>
+			</div>
+			<div class="form-group">
+			<input 
+			class=" form form-control form-control-sm" 
+			type="number" 
+			name="initial_price"
+			required="" 
+			placeholder="Initial Price">
+			</div>
+			<div class="form-group">
+			<input 
+			placeholder="Current Price" 
+			class=" form form-control form-control-sm" 
+			type="number"
+			required="" 
+			name="current_price">
+			</div>
+			<label>Product Description</label>
+		 	<textarea name="description" class="form-control form-control-sm" placeholder="Describe the product"></textarea>
+				</div>
+				<div class="col-md-4">
+					<h4>Original Picture</h4>
+		 			<div class="card mt-5">
+		 				<div class="card-body">
+		 					<div class="card-title py-3">
+		 						<h6>Clean Picture</h6>
+		 			
+								<div class="image-preview" id="imagePreview">
+									<img src="" alt="Image Preview" class="image-preview__image">
+									<span class="image-preview__default-text">Image Preview</span>
+								</div>
+								<input required="" type="file" name="original_picture" id="inpFile">
+		 					</div>
+		 				</div>
+		 			</div>
+		 		</div>
+		 	</div>
+		 	<br>
+		 	<br>
+		 	<h4>Other Pictures</h4>
+		 	<hr>
+		 	<div style="margin-top: 0;" class="row">
+				<div class="col-md-4" >
+					<div class="card mt-5">
+		 				<div class="card-body">
+		 					<div class="card-title py-3">
+		 						<h6>Pic 1</h6>
+		 			
+								<div class="image-preview1" id="imagePreview1">
+									<img src="" alt="Image Preview" class="image-preview__image1">
+									<span class="image-preview__default-text">Image Preview</span>
+								</div>
+								<input type="file" required="" name="pic1" id="inpFile1">
+		 					</div>
+		 				</div>
+		 			</div>
+				</div>
+				
+				<div class="col-md-4">
+		 			<div class="card mt-5">
+		 				<div class="card-body">
+		 					<div class="card-title py-3">
+		 						<h6>Pic 2</h6>
+		 			
+								<div class="image-preview2" id="imagePreview2">
+									<img src="" alt="Image Preview" class="image-preview__image2">
+									<span class="image-preview__default-text">Image Preview</span>
+								</div>
+								<input type="file" required="" name="pic2"  id="inpFile2">
+		 					</div>
+		 				</div>
+		 			</div>
+		 		</div>
+		 		<div class="col-md-4" >
+		 			<div class="card mt-5">
+		 				<div class="card-body">
+		 					<div class="card-title py-3">
+		 						<h6>Pic 3</h6>
+		 			
+								<div class="image-preview3" id="imagePreview3">
+									<img src="" alt="Image Preview" class="image-preview__image3">
+									<span class="image-preview__default-text">Image Preview</span>
+								</div>
+								<input type="file" required="" name="pic3"  id="inpFile3">
+		 					</div>
+		 				</div>
+		 			</div>
+		 		</div>
+		 	</div>
+		 	<br>
+			<br>
+			<input type="submit" name="" value="Save" class="btn btn-block btn-primary submit-btn">
+			<br>
+			<br>
+		</form>
+			</div>
+		</div>
+		
+	</div>
+	
+{% endblock %}

@@ -1,0 +1,195 @@
+{% extends 'base2.html' %}
+
+{% load static %}
+{% block content %}
+<div class="product-div">
+	
+		 			<div class="container1">
+		 				{% if page_obj %}
+		 				<div class="row">
+
+		 					<div class="col-md-8">
+		 						<h1 style="float: left;" class="lg-title">Our {{cat}} Products</h1>
+		 					</div>
+		 					<div class="col-md-4">
+		 						<div class="form-group">
+		 							<input class="form-control" placeholder="Search products" type="text" id="Search-btn" name="">
+		 						</div>
+		 					</div>
+		 				</div>
+		 				<hr>
+		 				<p class="text-light">
+		 					This product is the best shoe produced by Dubai companies joined together all in one.
+		 				</p>
+		 				<div class="app-table">
+		 				<div class="product-items">
+
+		 					{% for product in page_obj %}
+		 					<div class="product">
+		 						<i class="disp"></i>
+		 						<br>
+		 						<br>
+		 						<div class="product-content">
+		 							<div class="product-img">
+		 								<a href="{% url 'product_page' product.id %}"><img src="{{product.original_pics.url}}" width="200" height="200" alt="product image"></a>
+		 							</div>
+		 							<div class="product-btns">
+		 								<a href="" type="button" class="btn btn-secondary btn-cart">Add to cart<span><i class="fa fa-plus"></i> 
+		 								</span>
+		 								</a>
+		 								<a type="button" class="btn btn-secondary btn-buy">
+		 									Buy now
+		 									<span>
+		 										<i class="fa fa-shopping-cart"></i>
+		 									</span>
+
+		 								</a>
+
+		 							</div>
+		 						</div>
+		 						<div product-info>
+		 							<div class="product-info-top">
+		 								<h4 class="sm-title">lifestyle</h4>
+		 								<div class="rating">
+		 									<span><i class="fa fa-star"></i></span>
+		 									<span><i class="fa fa-star"></i></span>
+		 									<span><i class="fa fa-star"></i></span>
+		 									<span><i class="fa fa-star"></i></span>
+		 									<span><i class="fa fa-star"></i></span>
+		 								</div>
+		 							</div>
+		 							<a href="" class="product-name">{{product.name}}&nbsp;&nbsp;SE<span class="product-address">{{product.id}}</span>AB</a>
+		 							<div class="product-price" style="display: flex; padding-bottom: 0;">
+		 							<p >N {{product.initial_price}}</p>
+		 							<p >N {{product.final_price}}</p>
+		 							</div>
+		 						</div>
+		 						<!-- <div class="off-info">
+		 							<h2 class="sm-title">25% off</h2>
+		 						</div> -->
+		 					</div>
+		 					{% endfor %}
+
+		 				</div>
+		 				</div>
+		 				<div class="table-output" style="display: flex; flex-direction: row;">
+		 					
+		 				</div>
+		 				
+	<div class="pagination-container">	 			
+	<div class="">
+		showing page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+	</div>
+	<ul class="pagination align-right" style="float: right;">
+		{% if page_obj.has_previous %}
+			<li {% if page_obj.number == 1 %} class="page-item active {% endif %}">
+				<a class="page-link" href="?page=1">&laquo;</a>
+			</li>
+			<li {% if page_obj.number == 1 %} class="page-item active {% endif %}">
+				<a class="page-link" href="?page={{page_obj.previous_page_number}}">Previous</a>
+			</li>
+		{% endif %}
+
+		{% if page_obj.has_next %}
+			<li {% if page_obj.number == 1 %} class="page-item active {% endif %}">
+				<a class="page-link" href="?page={{page_obj.next_page_number}}">Next</a>
+			</li>
+			<li {% if page_obj.number == 1 %} class="page-item active {% endif %}">
+				<a class="page-link" href="?page={{page_obj.paginator.num_pages}}">{{ page_obj.paginator.num_pages}} &raquo; </a>
+			</li>
+		{% endif %}
+
+	</ul>
+		</div>
+		{% else %}
+			<h4>We don't have the category of products now. Check back later</h4>
+		{% endif %}
+	</div>
+	
+
+</div>
+
+<script src="{% static 'js/register.js' %}"></script>
+<script src="{% static 'js/cart.js' %}"></script>
+<script src="{% static 'js/search_products.js' %}"></script>
+<script>
+const searchBtn = document.querySelector('#Search-btn');
+const appTable = document.querySelector('.app-table');
+const tableOutput = document.querySelector('.table-output');
+const paginationContainer = document.querySelector('.pagination-container');
+
+tableOutput.style.display = 'none';
+
+searchBtn.addEventListener('keyup', (e)=>{
+	const searchValue = e.target.value;
+	
+
+	if (searchValue.trim().length > 0){
+		paginationContainer.style.display = 'none';
+		console.log(searchValue);
+
+		fetch('search_products', {
+		body: JSON.stringify({ searchText: searchValue }),
+		method:'POST',
+	}).then(res=>res.json()).then(data=>{
+
+		appTable.style.display = 'none';
+		tableOutput.style.display = 'block';
+		console.log('data', data);
+
+		if(data.length === 0){
+			tableOutput.innerHTML = 'No result found';
+
+		}else{
+			tableOutput.innerHTML = '';
+			data.forEach(item=>{
+				tableOutput.innerHTML += `
+				<div class="product-items">
+		 					<div class="product">
+		 						<i class="disp"></i>
+		 						<br>
+		 						<br>
+		 						<div class="product-content">
+		 							<div class="product-img">
+		 								<a href="${item.id}"><img src="media/${item.original_pics}" width="200" height="200" alt="product image"></a>
+		 							</div>
+		 							
+		 						</div>
+		 						<div product-info>
+		 							<div class="product-info-top">
+		 								<h4 class="sm-title">lifestyle</h4>
+		 								<div class="rating">
+		 									<span><i class="fa fa-star"></i></span>
+		 									<span><i class="fa fa-star"></i></span>
+		 									<span><i class="fa fa-star"></i></span>
+		 									<span><i class="fa fa-star"></i></span>
+		 									<span><i class="fa fa-star"></i></span>
+		 								</div>
+		 							</div>
+		 							<a href="" class="product-name">${item.name}&nbsp;&nbsp;SE<span class="product-address">${item.id}</span>AB</a>
+		 							<div class="product-price" style="display: flex; padding-bottom: 0;">
+		 							<p >N ${item.initial_price}</p>
+		 							<p >N ${item.final_price}</p>
+		 							</div>
+		 						</div>
+		 						<!-- <div class="off-info">
+		 							<h2 class="sm-title">25% off</h2>
+		 						</div> -->
+		 					</div>
+
+		 				</div>`;
+			});
+			
+		}
+	});
+
+	}else{
+		tableOutput.style.display = 'none';
+		appTable.style.display = 'block';
+		paginationContainer.style.display = 'block';
+		
+	}
+
+}); 
+</script>
+{% endblock %}

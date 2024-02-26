@@ -1,0 +1,348 @@
+
+{% extends 'base2.html' %}
+{% load static %}
+{% block content %}
+	{% include 'partials/_message.html' %}
+	
+
+	
+	<div class="container">
+	<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+		<div class="carousel-indicators">
+		  <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+		  <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+		  <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+		  <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
+		  <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 5"></button>
+		</div>
+
+		<div class="carousel-inner">
+		  <div class="carousel-item active">
+			<img src="{{slide.slide1pics.url}}" class="d-block w-100" alt="..." height="800">
+
+			<div class="carousel-caption d-none d-md-block mb-5" style="color: black;">
+				<h1>Material</h1>
+			  <h2 class="sm-title">{{slide.slide1heading}}</h2>
+			<h3 class="md-title">{{slide.slide1subheading}}</h3>
+				<p class="text-light">{{slide.slide2writeup}}</p>
+				<a style="text-decoration: none;" href="{% url 'category_page1' %}"  class=" btn btn-outline-success">Shop now</a>
+			</div>
+		  </div>
+		  <div class="carousel-item">
+			<img src="{{slide.slide2pics.url}}" class="d-block w-100" alt="..." height="800">
+			<div class="carousel-caption d-none d-md-block">
+				<h1>Foam</h1>
+				<h2 class="sm-title">{{slide.slide2heading}}</h2>
+			  <h3 class="md-title">{{slide.slide2subheading}}</h3>
+				  <p class="text-light">{{slide.slide2writeup}}</p>
+				  <a style="text-decoration: none;" href="{% url 'category_page2' %}"  class=" btn btn-outline-success">Shop now</a>
+			  </div>
+			</div>
+		  
+		  <div class="carousel-item">
+			<img src="{{slide.slide3pics.url}}" class="d-block w-100" alt="..." height="800">
+			<div class="carousel-caption d-none d-md-block">
+				<h1>Tool</h1>
+				<h2 class="sm-title">{{slide.slide3heading}}</h2>
+			  <h3 class="md-title">{{slide.slide3subheading}}</h3>
+				  <p class="text-light">{{slide.slide3writeup}}</p>
+				  <a style="text-decoration: none;" href="{% url 'category_page3' %}"  class=" btn btn-outline-success">Shop now</a>
+			</div>
+		  </div>
+		  <div class="carousel-item">
+			<img src="{{slide.slide4pics.url}}" class="d-block w-100" alt="..." height="800">
+			<div class="carousel-caption d-none d-md-block">
+				<h1>Wood</h1>
+				<h2 class="sm-title">{{slide.slide4heading}}</h2>
+			  <h3 class="md-title">{{slide.slide4subheading}}</h3>
+				  <p class="text-light">{{slide.slide4writeup}}</p>
+				  <a style="text-decoration: none;" href="{% url 'category_page4' %}"  class=" btn btn-outline-success">Shop now</a>
+			</div>
+		  </div>
+		  <div class="carousel-item">
+			<img src="{{slide.slide5pics.url}}" class="d-block w-100" alt="..." height="800">
+			<div class="carousel-caption d-none d-md-block">
+				<h1>Furniture</h1>
+				<h2 class="sm-title">{{slide.slide5heading}}</h2>
+			  <h3 class="md-title">{{slide.slide5subheading}}</h3>
+				  <p class="text-light">{{slide.slide5writeup}}</p>
+				  <a style="text-decoration: none;" href="{% url 'category_page5' %}"  class=" btn btn-outline-success">Shop now</a>
+			</div>
+		  </div>
+		</div>
+		
+		<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+		  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		  <span class="visually-hidden">Previous</span>
+		</button>
+		<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+		  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+		  <span class="visually-hidden">Next</span>
+		</button>
+	</div>
+	</div>
+
+	
+	<br>
+	<hr>
+
+			<!-- <div class="row">
+				<div class="col-md-8">
+					<h1 class="md-title">Our Products</h1>
+				</div>
+				<div class="col-md-4">
+					<div class="form-group">
+						<input class="form-control" placeholder="Search products" type="text" id="Search-btn" name="">
+					</div>
+				</div>
+			</div>
+			<hr>
+				<section style="background-color: #eee;">
+					<div class="container py-5">
+					  <div class="row">
+						{% for product in products %}
+						<div class="col-md-6 col-lg-3 mb-3 mb-lg-0">
+						  <div class="card">
+							<div class="d-flex justify-content-between p-3">
+							  <p class="lead mb-0">{{product.name}}  {{product.category}}</p>
+							  <div
+								class="bg-info rounded-circle d-flex align-items-center justify-content-center shadow-1-strong"
+								style="width: 35px; height: 35px;">
+								<p class="text-white mb-0 small">x4</p>
+							  </div>
+							</div>
+							<a href="{% url 'product_page' product.id %}"><img src="{{product.original_pics.url}}"
+							  class="card-img-top" alt="Laptop"  height="300"></a>
+							<div class="card-body">
+							  <div class="d-flex justify-content-between">
+								<p class="small"><a href="#!" class="text-muted">Normal Price</a></p>
+								<p class="small text-danger"><s>NG {{product.initial_price}}</s></p>
+							  </div>
+				  
+							  <div class="d-flex justify-content-between mb-3">
+								<h6 class="mb-0">Discounted Price</h6>
+								<h5 class="text-dark mb-0">NG{{product.final_price}}</h5>
+							  </div>
+				  
+							  <div class="d-flex justify-content-between mb-2">
+								<p class="text-muted mb-0">Available: <span class="fw-bold">{{product.id}}</span></p>
+								<div class="ms-auto text-warning">
+								  <i class="fa fa-star"></i>
+								  <i class="fa fa-star"></i>
+								  <i class="fa fa-star"></i>
+								  <i class="fa fa-star"></i>
+								  <i class="fa fa-star"></i>
+								</div>
+							  </div>
+							  <div class="d-flex justify-content-between mb-2">
+								<a href="{% url 'add_cart' product.pk %}" class="btn btn-success">Add to Cart</a><a href="" class="btn btn-secondary">Buy Now</a>
+							</div>
+							</div>
+						  </div>
+						</div>
+						{% endfor %}
+					  </div>
+					</div>
+				  </section>
+				
+			
+	
+			<div class="table-output" style="display: flex; flex-direction: row;">
+				
+			</div>
+			
+<div class="pagination-container">	 			
+<div class="">
+showing page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+</div>
+<ul class="pagination align-right" style="float: right;">
+{% if page_obj.has_previous %}
+<li {% if page_obj.number == 1 %} class="page-item active {% endif %}">
+   <a class="page-link" href="?page=1">&laquo;</a>
+</li>
+<li {% if page_obj.number == 1 %} class="page-item active {% endif %}">
+   <a class="page-link" href="?page={{page_obj.previous_page_number}}">Previous</a>
+</li>
+{% endif %}
+
+{% if page_obj.has_next %}
+<li {% if page_obj.number == 1 %} class="page-item active {% endif %}">
+   <a class="page-link" href="?page={{page_obj.next_page_number}}">Next</a>
+</li>
+<li {% if page_obj.number == 1 %} class="page-item active {% endif %}">
+   <a class="page-link" href="?page={{page_obj.paginator.num_pages}}">{{ page_obj.paginator.num_pages}} &raquo; </a>
+</li>
+{% endif %}
+
+</ul> -->
+
+<div class="product-div">
+	<div class="container1">
+		<div class="row">
+			<div class="col-md-8">
+				<h1 class="md-title">Our Products</h1>
+			</div>
+			<div class="col-md-4">
+				<div class="form-group">
+					<input class="form-control" placeholder="Search products" type="text" id="Search-btn" name="">
+				</div>
+			</div>
+		</div>
+		<hr>
+		<p class="text-light">
+			This product is the best shoe produced by Dubai companies joined together all in one.
+		</p>
+		<div class="app-table">
+		<div class="product-items">
+			{% for product in products %}
+			<div class="product">
+				<i class="disp"></i>
+				<br>
+				<br>
+				<div class="product-content">
+					<div class="product-img">
+						<a href="{% url 'product_page' product.id %}"><img src="{{product.original_pics.url}}" width="200" height="200" alt="product image"></a>
+					</div>
+					<div class="product-btns">
+						<a href="" type="button" class=" btn-cart">Add to cart<span><i class="fa fa-shopping-cart"></i> 
+						</span>
+						</a>
+						<a type="button" class=" btn-buy">
+							Buy now
+							<span>
+								<i class="fa fa-plus"></i>
+							</span>
+
+						</a>
+
+					</div>
+				</div>
+				<div product-info>
+					<div class="product-info-top">
+						<h4 class="sm-title">lifestyle</h4>
+						<div class="rating">
+							<span><i class="fa fa-star"></i></span>
+							<span><i class="fa fa-star"></i></span>
+							<span><i class="fa fa-star"></i></span>
+							<span><i class="fa fa-star"></i></span>
+							<span><i class="fa fa-star"></i></span>
+						</div>
+					</div>
+					<a href="" class="product-name">{{product.name}}&nbsp;&nbsp;SE<span class="product-address">{{product.id}}</span>AB</a>
+					<div class="product-price" style="display: flex; padding-bottom: 0;">
+					<p >N {{product.initial_price}}</p>
+					<p >N {{product.final_price}}</p>
+					</div>
+				</div>
+				<!-- <div class="off-info">
+					<h2 class="sm-title">25% off</h2>
+				</div> -->
+			</div>
+			{% endfor %}
+
+		</div>
+		</div>
+		<div class="table-output" style="display: flex; flex-direction: row;">
+			
+		</div>
+		
+<div class="pagination-container">	 			
+<div class="">
+showing page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+</div>
+<ul class="pagination align-right" style="float: right;">
+{% if page_obj.has_previous %}
+<li {% if page_obj.number == 1 %} class="page-item active {% endif %}">
+<a class="page-link" href="?page=1">&laquo;</a>
+</li>
+<li {% if page_obj.number == 1 %} class="page-item active {% endif %}">
+<a class="page-link" href="?page={{page_obj.previous_page_number}}">Previous</a>
+</li>
+{% endif %}
+
+{% if page_obj.has_next %}
+<li {% if page_obj.number == 1 %} class="page-item active {% endif %}">
+<a class="page-link" href="?page={{page_obj.next_page_number}}">Next</a>
+</li>
+<li {% if page_obj.number == 1 %} class="page-item active {% endif %}">
+<a class="page-link" href="?page={{page_obj.paginator.num_pages}}">{{ page_obj.paginator.num_pages}} &raquo; </a>
+</li>
+{% endif %}
+
+</ul>
+</div>
+</div>
+</div>
+
+
+<div class="product-collection">
+<div class="container1">
+<hr>
+<h1 class="md-title">Our Product Categories</h1> 
+<div class="product-collection-wrapper">
+   <!-- <div style="background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3)), url({{slide.slide1pics.url}}) center/cover no-repeat;" class="product-col-left flex">
+	   <div class="product-col-content">
+		   <h2 class="sm-title">{{slide.slide1heading}}</h2>
+		   <h2 class="md-title">{{slide.slide1subheading}}</h2>
+		   <p class="text-light">{{slide.slide1writeup}}</p>
+		   <a style="text-decoration: none;" href="{% url 'category_page1' %}" type="button" class="btn-dark">Shop now</a>
+	   </div>
+	   
+   </div> -->
+   <div>
+   <div style="background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3)), url({{slide.slide1pics.url}}) center/cover no-repeat;" class="product-col-r-top flex">
+		   <div  class="product-col-content">
+		   <h2 class="sm-title">{{slide.slide1heading}}</h2>
+		   <h2 class="md-title">{{slide.slide1subheading}}</h2>
+		   <p class="text-light">{{slide.slide2writeup}}</p>
+		   <a style="text-decoration: none;" href="{% url 'category_page1' %}" type="button" class="btn-dark">Shop now</a>
+		   </div>
+	   </div>
+	   <div style="background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3)), url({{slide.slide5pics.url}}) center/cover no-repeat;" class="product-col-r-top flex">
+		   <div  class="product-col-content">
+		   <h2 class="sm-title">{{slide.slide5heading}}</h2>
+		   <h2 class="md-title">{{slide.slide5subheading}}</h2>
+		   <p class="text-light">{{slide.slide5writeup}}</p>
+		   <a style="text-decoration: none;" href="{% url 'category_page5' %}" type="button" class="btn-dark">Shop now</a>
+		   </div>
+	   </div>
+   </div>
+   <div class="product-col-right">
+	   <div style="background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3)), url({{slide.slide2pics.url}}) center/cover no-repeat;" class="product-col-r-top flex">
+		   <div  class="product-col-content">
+		   <h2 class="sm-title">{{slide.slide2heading}}</h2>
+		   <h2 class="md-title">{{slide.slide2subheading}}</h2>
+		   <p class="text-light">{{slide.slide2writeup}}</p>
+		   <a style="text-decoration: none;" href="{% url 'category_page2' %}" type="button" class="btn-dark">Shop now</a>
+		   </div>
+	   </div>
+	   <div class="product-col-r-bottom">
+		   <div style="background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3)), url({{slide.slide3pics.url}}) center/cover no-repeat;" class="flex">
+			   <div class="product-col-content">
+			   <h2 class="sm-title">{{slide.slide3heading}}</h2>
+			   <h2 class="md-title">{{slide.slide3subheading}}</h2>
+			   <p class="text-light">{{slide.slide3writeup}}</p>
+			   <a style="text-decoration: none;" href="{% url 'category_page3' %}" type="button" class="btn-dark">Shop now</a>
+			   </div>
+		   </div>
+		   <div style="background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3)), url({{slide.slide4pics.url}}) center/cover no-repeat;" class="flex">
+			   <div class="product-col-content">
+			   <h2 class="sm-title">{{slide.slide4heading}}</h2>
+			   <h2 class="md-title">{{slide.slide4subheading}}</h2>
+			   <p class="text-light">{{slide.slide4writeup}}</p>
+			   <a style="text-decoration: none;" href="{% url 'category_page4' %}" type="button" class="btn-dark">Shop now</a>
+		   </div>
+		   </div>
+	   </div>
+   </div>
+</div>
+</div>
+</div>
+
+<script src="{% static 'js/register.js' %}"></script>
+<script src="{% static 'js/cart.js' %}"></script>
+<script src="{% static 'js/search_products.js' %}"></script>
+
+
+
+{% endblock %}

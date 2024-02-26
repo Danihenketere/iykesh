@@ -1,0 +1,92 @@
+{% extends 'base-auth.html' %}
+{% load static %}
+{% block title %}
+	REGISTER 
+{% endblock %}
+{% block content %}
+<div class="row">
+	<div class="col-md-4" ></div>
+	<div class="col-md-4">
+		 <div class="card mt-5">
+		 	<div class="card-body">
+		 	<div class="card-title py-3">
+		 		<h4>Register for a free count</h4>
+		 	</div>
+		 		<form action="{% url 'register' %}" method="POST">
+		 			{% csrf_token %}
+		 			{% include 'partials/_message.html' %}
+		 			<div class="form-group">
+		 				<label>Username</label>
+		 				<input 
+		 				placeholder="Username" 
+		 				type="username" 
+		 				required=""
+		 				value="{{fieldValues.username}}"  
+		 				name="username" 
+		 				class="form-control form-control-sm" 
+		 				id="usernamefield">
+		 			</div>
+		 			<div class="invalid-feedback" style="display: none;">
+		 				
+		 			</div>
+		 			<p class="text-sm text-success usernamecheck"></p>
+
+		 			<div class="form-group">
+		 				<label>Email</label>
+		 				<input 
+		 				placeholder="Email" 
+		 				value="{{fieldValues.email}}" 
+		 				type="email" 
+		 				required="" 
+		 				name="email" 
+		 				class="form-control form-control-sm" 
+		 				id="emailfield">
+		 			</div>
+
+		 			<div class="emailinvalid-feedback" style="display: none;">
+		 				
+		 			</div>
+		 			<p class="text-sm text-success emailheck"></p>
+
+		 			<div class="form-group">
+		 				<label>Password</label>
+		 				<input 
+		 				placeholder="Password" 
+		 				type="password" 
+		 				name="password"
+		 				required="" 
+		 				class="form-control form-control-sm" 
+		 				id="passwordfield">
+		 				<small class="float-right py-3 passwordtoggle" style="display: none;" >SHOW</small>
+		 			</div>
+		 			<div class="form-group">
+		 				<label>Address</label>
+		 				<input 
+
+		 				placeholder="Address" 
+		 				type="text" 
+		 				name="address"
+		 				required="" 
+		 				class="form-control form-control-sm" 
+		 				id="address">
+		 			</div>
+		 			<div class="form-group">
+		 				<label>Phone Number</label>
+		 				<input 
+		 				placeholder="Phone number" 
+		 				type="number" 
+		 				name="phone"
+		 				required="" 
+		 				class="form-control form-control-sm" 
+		 				id="phone">
+		 			</div>
+		 			<input type="submit" name="" value="Register" class="btn btn-block btn-primary submit-btn">
+		 		</form>
+		 	</div>
+		 	</div>
+		
+	</div>
+	<div class="col-md-4"></div>
+</div>
+<script src="{% static 'js/register.js' %}"></script>
+{% endblock %}

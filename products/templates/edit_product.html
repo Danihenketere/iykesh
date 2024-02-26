@@ -1,0 +1,221 @@
+{% extends 'base2.html' %}
+
+{% block content %}
+	<div class="container1">
+		<div class="row">
+			<div class="col-md-10"></div>
+			<div class="col-md-2">
+				<a href="{% url 'delete_product' product.id %}" class="btn btn-danger btn-sm" onclick="confirm('Are you sure you want to delete the product')">Delete Product</a>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<h1>Edit Product </h1>
+		{% include 'partials/_message.html' %}
+		<div class="card">
+			<div class="card-body">
+				<form enctype="multipart/form-data" action="{% url 'edit_product' product.id %}" method="post">
+					{% csrf_token %}
+			<div class="row">
+				<div class="col-md-8">
+			<div class="form-group">
+			<input 
+			class=" form form-control form-control-sm" 
+			type="text" 
+			name="product_name"
+			required=""
+			value="{{values.name}}" 
+			placeholder="Product Name">
+
+			</div>
+			<div class="row">
+			<div class="col-md-6">
+			<div class="form-group">
+			<select id="slct1"  
+			class=" form form-control form-control-sm" 
+			name="" required="">
+				<option>Select Category</option>
+				<option value="Materials">Materials</option>
+				<option value="Foam">Foam</option>
+				<option value="Tools">Tools</option>
+				<option value="Other Materials">Other Materials</option>
+			</select>
+			</div>
+			</div>
+
+			<div class="col-md-6">
+			<div class="form-group">
+				<input id="slctd" 
+				required="" 
+				class="form-control form-control-sm" 
+				type="text"
+				value="{{values.category}}" 
+				name="category"
+				placeholder="Type in the category">
+
+			</div>
+			</div>
+			</div>
+			<div class="row">
+			<div class="col-md-6">
+			<div class="form-group">
+			<select id="slct2"  
+			class=" form form-control form-control-sm" 
+			name="" required="">
+			</select>
+			</div>
+			</div>
+			<div class="col-md-6">
+			<div class="form-group">
+				<input id="slctd1" 
+				required="" 
+				class="form-control form-control-sm" 
+				type="text" 
+				name="sub-category"
+				value="{{values.sub_category}}" 
+				placeholder="Type in the sub-category">
+
+			</div>
+			</div>
+			</div>
+
+			<div class="row">
+			<div class="col-md-6">
+			<div class="form-group">
+			<select id="slctd2"  
+			class=" form form-control form-control-sm" 
+			name="" required="">
+				<option>Select Mode of Sales</option>
+				<option value="Yard">Yard</option>
+				<option value="Inche">Inche</option>
+				<option value="Meter">Meter</option>
+				<option value="Pounds Weight">Pounds Weight</option>
+				<option value="Packet">Packet</option>
+				<option value="Roll">Roll</option>
+				<option value="Piece">Piece</option>
+				<option value="Length">Length</option>
+				<option value="Carton">Carton</option>
+				<option value="Litre">Litre</option>
+				<option value="Gallon">Gallon</option>
+				<option value="Bundle">Bundle</option>
+			</select>
+			</div>
+			</div>
+			<div class="col-md-6">
+			<div class="form-group">
+				<input id="slctd3" 
+				required="" 
+				class="form-control form-control-sm" 
+				type="text" 
+				name="mode"
+				value="{{values.mode}}" 
+				placeholder="Type in the mode of Sales">
+
+			</div>
+			</div>
+			</div>
+			<div class="form-group">
+			<input 
+			class=" form form-control form-control-sm" 
+			type="number" 
+			name="initial_price"
+			required="" 
+			value="{{values.initial_price}}" 
+			placeholder="Initial Price">
+			</div>
+			<div class="form-group">
+			<input 
+			placeholder="Current Price" 
+			class=" form form-control form-control-sm" 
+			type="number"
+			required="" 
+			value="{{values.final_price}}" 
+			name="current_price">
+			</div>
+		 	<label>Product Description</label>
+		 	<textarea name="description" class="form-control form-control-sm" placeholder="Describe the product">{{values.description}}</textarea>
+			</div>
+			<div class="col-md-4">
+				<h4>Original Picture</h4>
+					<div class="card mt-5">
+		 				<div class="card-body">
+		 					<div class="card-title py-3">
+		 						<h6>Clean Picture</h6>
+		 			
+								<div class="image-preview" id="imagePreview">
+									<img src="{{product.original_pics.url}}" style="display: block;" alt="Image Preview" class="image-preview__image">
+									<span class="image-preview__default-text">Image Preview</span>
+								</div>
+
+								<input required="" value="{{values.original_pics.url}}" type="file" name="original_picture" id="inpFile">
+		 					</div>
+		 				</div>
+		 			</div>
+		 		</div>
+			</div>
+			</div>
+			
+		 	<br>
+		 	<h4>Other Pictures</h4>
+		 	<hr>
+		 	<div style="margin-top: 0;" class="row">
+				<div class="col-md-4" >
+					<div class="card mt-5">
+		 				<div class="card-body">
+		 					<div class="card-title py-3">
+		 						<h6>Pic 1</h6>
+		 			
+								<div class="image-preview1" id="imagePreview1">
+									<img src="{{product.pics1.url}}" style="display: block;" alt="Image Preview" class="image-preview__image1">
+									<span class="image-preview__default-text">Image Preview</span>
+								</div>
+								<input required="" type="file" value="{{values.pics1}}" name="pic1" id="inpFile1">
+		 					</div>
+		 				</div>
+		 			</div>
+				</div>
+				
+				<div class="col-md-4">
+		 			<div class="card mt-5">
+		 				<div class="card-body">
+		 					<div class="card-title py-3">
+		 						<h6>Pic 2</h6>
+		 			
+								<div class="image-preview2" id="imagePreview2">
+									<img src="{{product.pics2.url}}" style="display: block;" alt="Image Preview" class="image-preview__image2">
+									<span class="image-preview__default-text">Image Preview</span>
+								</div>
+								<input required="" type="file" value="{{values.pics2}}" name="pic2"  id="inpFile2">
+		 					</div>
+		 				</div>
+		 			</div>
+		 		</div>
+		 		<div class="col-md-4" >
+		 			<div class="card mt-5">
+		 				<div class="card-body">
+		 					<div class="card-title py-3">
+		 						<h6>Pic 3</h6>
+		 			
+								<div class="image-preview3" id="imagePreview3">
+									<img src="{{product.pics3.url}}" style="display: block;" alt="Image Preview" class="image-preview__image3">
+									<span class="image-preview__default-text">Image Preview</span>
+								</div>
+								<input required="" type="file" value="{{values.pics3}}" name="pic3"  id="inpFile3">
+		 					</div>
+		 				</div>
+		 			</div>
+		 		</div>
+		 	</div>
+		 	
+		 	
+			<br>
+			<input type="submit" name="" value="Save Update" class="btn btn-block btn-primary submit-btn">
+			<br>
+			<br>
+		</form>
+			</div>
+		</div>
+		
+	</div>
+	
+{% endblock %}

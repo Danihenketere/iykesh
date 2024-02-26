@@ -1,0 +1,165 @@
+{% extends 'base2.html' %}
+{% load static %}
+{% block content %}
+<div class="row">
+	<div class="col-md-4" ></div>
+	<div class="col-md-4">
+		 <div class="card mt-5">
+		 	<div class="card-body">
+		 	<div class="card-title py-3">
+		 		<div class="header p-3 bg-dark text-center text-white">
+		 		<h4>Payment page</h4>
+		 		</div>
+		 		<div class="alert alert-warning">Your log here</div>
+		 
+		 	</div>
+		 		<form>
+		 			{% csrf_token %}
+		 			{% include 'partials/_message.html' %}
+		 			<div class="form-group">
+		 				<label>Email</label>
+		 				<input 
+		 				placeholder="Enter your email" 
+		 				type="email" 
+		 				required=""
+		 				name="email" 
+		 				class="form-control form-control-sm" 
+		 				id="email">
+		 			</div>
+
+		 			<div class="form-group">
+		 				<label>Amount</label>
+		 				<input 
+		 				placeholder="" 
+		 				type="number" 
+		 				name="amount"
+		 				required=""
+		 				value="{{totalcost}}" 
+		 				class="form-control form-control-sm" 
+		 				id="amount">
+		 				
+		 			</div>
+		 			<div class="form-group">
+		 				<label>Full Name</label>
+		 				<input 
+		 				placeholder="Enter your full name" 
+		 				type="text" 
+		 				name="name"
+		 				required=""
+		 				value="" 
+		 				class="form-control form-control-sm" 
+		 				id="name">
+		 				
+		 			</div>
+		 			<input id="submitpay" type="submit" name="" value="Make payment" class="btn btn-block btn-primary submit-btn">
+		 		</form>
+		 	</div>
+		 	</div>
+		
+	</div>
+	<div class="col-md-4"></div>
+</div>
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="https://js.paystack.co/v1/inline.js"></script>
+<script>
+	$(document).ready(function(){
+		$('#submitpay').click(function(e){
+			e.preventDefault();
+			var email = $('#email').val();
+			var name = $('#name').val();
+			var amount = $('#amount').val();
+
+			if (email == ''){
+				alert("Enter your email");
+				return;
+			}else if (name == ''){
+				alert("Enter your name");
+				return;
+			}else if (amount == ''){
+				alert("Enter your amount");
+				return;
+			}
+
+			var handler = PaystackPop.setup({
+				key: "{{pk_public}}",
+				email: email,
+				amount: amount + "00",
+				currency: "NGN",
+				ref:"" + Math.floor(Math.random() * 1000000000 + 1),
+				metadata: {
+					custom_fields: [
+					{
+						displsy_name: name,
+						variable_name: name
+					}
+					]
+				},
+				callback: function (response){
+					var referenceid = response.reference;
+					$.ajax({
+						type: "GET",
+						url: "verify/" + referenceid,
+						beforeSend: function(response){
+							console.log("Sending request");
+							$(".alert").text("Sending request");
+						},
+						success: function(response){
+							if (response[3].states == "success"){
+								$(".alert").removeClass("alert-warning");
+								$(".alert").addClass("alert-success");
+								$(".alert").text("Transaction verified");
+								console.log("Transaction verified");
+								$("form").trigger("reset");
+
+							}else{
+								$(".alert").text("Transaction reference not found");
+							}
+						}
+					});
+				},
+				onClose: function(){
+					alert("window closed");
+				}
+			});
+			handler.openIframe();
+		});
+	});
+	// var email = document.querySelector('#email');
+	// var amount = document.querySelector('#amount');
+	// var name = document.querySelector('#name');
+	// var submitPay = document.querySelector('#submitpay');
+	// var public_key = '{{pk_public}}}';
+
+	// submitPay.onclick = ()=>{
+	// 	var handler = PaystackPop.setup({
+ //            key = public_key, //public key from your paystack
+ //            email: email,
+ //            amount: amount,
+ //            currency: 'NGN',
+ //            ref: ''+ Math.floor(Math.random() * 1000000000 + 1),
+ //            callback: function(response){
+ //            	var referenceid = response.reference;
+ //            	fetch('related_products', {
+ //    			body: JSON.stringify({ searchText: referenceid}),
+ //    			method:'POST',
+ //  				}).then(res=>res.json()).then(data=>{
+ //  					alert('success. transaction ref is ' +response.reference);
+ //  				})
+ //      //       	fetch(`verify/${referenceid}`)
+ //  				// .then(response => response.json())
+ //  				// .then(message =>{
+ //  				// 	 alert('success. transaction ref is ' +response.reference);
+ //  				// })
+         
+ //      },
+ //      onClose: function(){
+ //          alert('window closed');
+ //      }
+ //    });
+ //    handler.openIframe();
+ //  }
+ //  window.onload = makePayment()
+	
+	
+</script>
+{% endblock%}

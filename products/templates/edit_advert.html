@@ -1,0 +1,195 @@
+{% extends 'base2.html' %}
+{% load static %}
+
+{% block content %}
+	<div class="container1">
+		<h1>Advert page update</h1>
+		<br>
+		{% include 'partials/_message.html' %}
+		<div class="card">
+			<div class="card-body">
+				<form enctype="multipart/form-data" action="{% url 'edit_slide' %}" method="post">
+					{% csrf_token %}
+				<div class="row">
+
+					<div class="col-md-3">
+					<h4>Slide1 Picture</h4>
+					<div class="card mt-3">
+		 				<div class="card-body">
+		 					<div class="card-title py-3">
+		 						<h6>Clean Picture</h6>
+		 					</div>
+								<div style=" width: 240px;" class="image-preview" id="imagePreview">
+									<img src="{{value.slide1pics.url}}" style="display: block;" alt="Image Preview" class="image-preview__image">
+									<span class="image-preview__default-text">Image Preview</span>
+								</div>
+
+								<input required="" value="{{values.slide1pics.url}}" type="file" name="slide1pics" id="inpFile">
+		 					
+		 				</div>
+		 			</div>
+		 			<div class="form-group">
+		 				<input type="text"
+		 				required=""
+		 				value="{{value.slide1heading}}" 
+		 				class="form form-control form-control-sm" 
+		 				placeholder="Slide 1 Heading" 
+		 				name="slide1heading">
+		 			</div>
+		 			<div class="form-group">
+		 				<input type="text"
+		 				required=""
+		 				value="{{value.slide1subheading}}"  
+		 				class="form form-control form-control-sm" 
+		 				placeholder="Slide 1 Sub-heading" 
+		 				name="slide1subheading">
+		 			</div>
+		 			<div class="form-group">
+		 				<textarea class="form form-control form-control-sm" 
+		 				required="" 
+		 				value="{{value.slide1writeup}}" 
+		 				placeholder="Slide 1 Writeup" 
+		 				name="slide1writeup">{{value.slide1writeup}}" </textarea>
+		 				
+		 				
+		 			</div>
+					</div>
+					<div class="col-md-3">
+						<h4>Slide2 Picture</h4>
+					<div class="card mt-3">
+		 				<div class="card-body">
+		 					<div class="card-title py-3">
+		 						<h6>Clean Picture</h6>
+		 					</div>
+								<div style=" width: 240px;"  class="image-preview" id="imagePreview1">
+									<img src="{{value.slide2pics.url}}" style="display: block;" alt="Image Preview" class="image-preview__image1">
+									<span class="image-preview__default-text">Image Preview</span>
+								</div>
+
+								<input required="" value="{{values.original_pics.url}}" type="file" name="slide2pics" id="inpFile1">
+		 					
+		 				</div>
+		 			</div>
+		 			<div class="form-group">
+		 				<input type="text"
+		 				required="" 
+		 				class="form form-control form-control-sm" 
+		 				placeholder="Slide 2 Heading"
+		 				value="{{value.slide2heading}}" 
+		 				name="slide2heading">
+		 			</div>
+		 			<div class="form-group">
+		 				<input type="text"
+		 				required="" 
+		 				class="form form-control form-control-sm" 
+		 				value="{{value.slide2subheading}}" 
+		 				placeholder="Slide 2 Sub-heading" 
+		 				name="slide2subheading">
+		 			</div>
+		 			<div class="form-group">
+		 				<textarea class="form form-control form-control-sm" 
+		 				value="{{value.slide2writeup}}" 
+		 				required="" 
+		 				placeholder="Slide 2 Writeup" 
+		 				name="slide2writeup">{{value.slide2writeup}}</textarea>
+		 				
+		 				
+		 			</div>
+		 			
+					</div>
+					<div class="col-md-3">
+						<h4>Slide3 Picture</h4>
+					<div class="card mt-3">
+		 				<div class="card-body">
+		 					<div class="card-title py-3">
+		 						<h6>Clean Picture</h6>
+		 					</div>
+								<div style=" width: 240px;"  class="image-preview" id="imagePreview2">
+									<img src="{{value.slide3pics.url}}" style="display: block;" alt="Image Preview" class="image-preview__image2">
+									<span class="image-preview__default-text">Image Preview</span>
+								</div>
+
+								<input required="" value="{{values.original_pics.url}}" type="file" name="slide3pics" id="inpFile2">
+		 					
+		 				</div>
+		 			</div>
+		 			<div class="form-group">
+		 				<input type="text"
+		 				required="" 
+		 				value="{{value.slide3heading}}" 
+		 				class="form form-control form-control-sm" 
+		 				placeholder="Slide 3 Heading" 
+		 				name="slide3heading">
+		 			</div>
+		 			<div class="form-group">
+		 				<input type="text"
+		 				required=""
+		 				value="{{value.slide3subheading}}"  
+		 				class="form form-control form-control-sm" 
+		 				placeholder="Slide 3 Sub-heading" 
+		 				name="slide3subheading">
+		 			</div>
+		 			<div class="form-group">
+		 				<textarea class="form form-control form-control-sm" 
+		 				value="{{value.slide3writeup}}" 
+		 				required="" 
+		 				placeholder="Slide 3 Writeup" 
+		 				name="slide3writeup">{{value.slide3writeup}}</textarea>
+		 				
+		 				
+		 			</div>
+					</div>
+					<div class="col-md-3">
+						<h4>Slide4 Picture</h4>
+					<div class="card mt-3">
+		 				<div class="card-body">
+		 					<div class="card-title py-3">
+		 						<h6>Clean Picture</h6>
+		 					</div>
+								<div style=" width: 240px;"  class="image-preview" id="imagePreview3">
+									<img src="{{value.slide4pics.url}}" style="display: block;" alt="Image Preview" class="image-preview__image3">
+									<span class="image-preview__default-text">Image Preview</span>
+								</div>
+
+								<input required="" value="{{values.original_pics.url}}" type="file" name="slide4pics" id="inpFile3">
+		 					
+		 				</div>
+		 			</div>
+		 			<div class="form-group">
+		 				<input type="text"
+		 				required=""
+		 				value="{{value.slide4heading}}"  
+		 				class="form form-control form-control-sm" 
+		 				placeholder="Slide 4 Heading" 
+		 				name="slide4heading">
+		 			</div>
+		 			<div class="form-group">
+		 				<input type="text"
+		 				required="" 
+		 				value="{{value.slide4subheading}}" 
+		 				class="form form-control form-control-sm" 
+		 				placeholder="Slide 4 Sub-heading" 
+		 				name="slide4subheading">
+		 			</div>
+		 			<div class="form-group">
+		 				<textarea class="form form-control form-control-sm"
+		 				required="" 
+		 				value="{{value.slide4writeup}}" 
+		 				placeholder="Slide 4 Writeup" 
+		 				name="slide4writeup">{{value.slide4writeup}}</textarea>
+		 				
+		 				
+		 			</div>
+					</div>
+					
+				</div>
+				<br>
+			<input type="submit" name="" value="Save Update" class="btn btn-block btn-primary submit-btn">
+			<br>
+			<br>
+			</form>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

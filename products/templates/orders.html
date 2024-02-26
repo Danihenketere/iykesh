@@ -1,0 +1,45 @@
+{% extends 'base2.html' %}
+
+{% load static %}
+{% block content %}
+<div class="container1">
+	<h1>The Orders</h1>
+	<table class="table table-stripped table-hover">
+		<thead>
+			<th> Order ID </th>
+			<th>Customer</th>
+			<th>Email</th>
+			<th>Date </th>
+			<th>Item</th>
+			<th>Quantity</th>
+			<th>Rate</th>
+			<th>Total</th>
+			<th></th>
+		</thead>
+		<tbody>
+			{% for order in orders %}
+			<tr>
+				<td>{{order.order_id}}</td>
+				<td>{{order.username}}</td>
+				<td>{{order.email}}</td>
+				<td>{{order.timestamp}}</td>
+				<td>{{order.item}}</td>
+				<td>{{order.quantity}}</td>
+				<td>{{order.rate}}</td>
+				<td>{{order.total_price}}</td>
+				<td><a class="btn btn-secondary btn-sm" href="{% url 'delete_order' order.id %}">Delete</a></td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	
+	<p></p>
+
+	
+	
+
+</div>
+
+
+
+{% endblock %}

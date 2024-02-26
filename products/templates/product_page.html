@@ -1,0 +1,151 @@
+{% extends 'base2.html' %}
+{% load static %}
+{% block content %}
+	{% include 'partials/_message.html' %}
+	<div class="container1">
+		<div class="row">
+			<div class="col-md-10"></div>
+			<div class="col-md-2 mt-5">
+				<a href="{% url 'edit_product' product.id %}" class="btn btn-secondary btn-sm">Edit Product</a>
+			</div>
+		</div>
+	</div>
+	<div class="container1 single-product">
+	<div class="row">
+		<div class="col-md-6 cola-2">
+			<img src="{{product.original_pics.url}}" width="100%" id="product-img" height="500">
+			<div class="small-img-row">
+				<div class="small-img-col">
+					<img src="{{product.original_pics.url}}" width="100%" class="small-img" height="100">
+				</div>
+				<div class="small-img-col">
+					<img src="{{product.pics1.url}}" width="100%" class="small-img" height="100">
+				</div>
+				<div class="small-img-col">
+					<img src="{{product.pics2.url}}" width="100%" class="small-img" height="100">
+				</div>
+				<div class="small-img-col">
+					<img src="{{product.pics3.url}}" width="100%" class="small-img" height="100">
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6 cola-2">
+			<p>{{product.category}}/{{product.sub_category}}</p>
+			<h1>{{product.name}}</h1>
+			<span style="display: flex;"><h5>N{{product.final_price}}</h5>&nbsp;&nbsp;<p style="margin: 25px 0;"> Per </p>&nbsp;&nbsp;<p style="margin: 25px 0;" >{{product.mode}}</p></span>
+			<p class="prdctid">{{product.id}}</p>
+			<p class="span1"></p>
+			<p style="margin-bottom: 0;">Number of {{product.mode}}s:</p>
+			<input style="margin-top: 1px;" type="number" value="1" name="">
+			<a href="" class="btn btn-success btn-cart1">Add To Cart</a>
+			<h3>Product Details <i class="fa far-indent"></i></h3>
+			<p>{{product.description}}</p>
+		</div>
+	</div>	
+	</div> 		
+
+	<div class="container1">
+		<hr>
+		<br>
+		<br>
+		<div class="row">
+			<div class="col-md-10">
+				<h1 style="float: left;" class="lg-title">Related Products</h1>
+			</div>
+
+			<div class="col-md-2">
+				<p>View More</p>
+			</div>
+		</div>
+	</div>
+
+
+
+		 		<div class="product-div">
+		 			<div class="container1">
+		 				<p class="text-light">
+		 					This product is the best shoe produced by Dubai companies joined together all in one.
+		 				</p>
+		 				<!-- <div class="apptable">
+		 				<div class="product-items">
+		 					{% for product in page_obj %}
+		 					<div class="product">
+		 						<i class="disp"></i>
+		 						<br>
+		 						<br>
+		 						<div class="product-content">
+		 							<div class="product-img">
+		 								<a href="{% url 'product_page' product.id %}"><img src="{{product.original_pics.url}}" width="200" height="200" alt="product image"></a>
+		 							</div>
+		 							<div class="product-btns">
+		 								<a href="" type="button" class="btn btn-secondary btn-cart">Add to cart<span><i class="fa fa-plus"></i> 
+		 								</span>
+		 								</a>
+		 								<a type="button" class="btn btn-secondary btn-buy">
+		 									Buy now
+		 									<span>
+		 										<i class="fa fa-shopping-cart"></i>
+		 									</span>
+
+		 								</a>
+
+		 							</div>
+		 						</div>
+		 						<div product-info>
+		 							<div class="product-info-top">
+		 								<h4 class="sm-title">lifestyle</h4>
+		 								<div class="rating">
+		 									<span><i class="fa fa-star"></i></span>
+		 									<span><i class="fa fa-star"></i></span>
+		 									<span><i class="fa fa-star"></i></span>
+		 									<span><i class="fa fa-star"></i></span>
+		 									<span><i class="fa fa-star"></i></span>
+		 								</div>
+		 							</div>
+		 							<a href="" class="product-name">{{product.name}}&nbsp;&nbsp;SE<span class="product-address">{{product.id}}</span>AB</a>
+		 							<div class="product-price" style="display: flex; padding-bottom: 0;">
+		 							<p >N {{product.initial_price}}</p>
+		 							<p >N {{product.final_price}}</p>
+		 							</div>
+		 						</div> -->
+		 						<!-- <div class="off-info">
+		 							<h2 class="sm-title">25% off</h2>
+		 						</div> -->
+		 				<!-- 	</div>
+		 					{% endfor %}
+
+		 				</div>
+		 			</div> -->
+		 			<div class="table-output">
+		 				
+		 			</div>
+		 			
+<!-- 	<div class="">
+		showing page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+	</div>
+	<ul class="pagination align-right" style="float: right;">
+		{% if page_obj.has_previous %}
+			<li {% if page_obj.number == 1 %} class="page-item active {% endif %}">
+				<a class="page-link" href="?page=1">&laquo;</a>
+			</li>
+			<li {% if page_obj.number == 1 %} class="page-item active {% endif %}">
+				<a class="page-link" href="?page={{page_obj.previous_page_number}}">Previous</a>
+			</li>
+		{% endif %}
+
+		{% if page_obj.has_next %}
+			<li {% if page_obj.number == 1 %} class="page-item active {% endif %}">
+				<a class="page-link" href="?page={{page_obj.next_page_number}}">Next</a>
+			</li>
+			<li {% if page_obj.number == 1 %} class="page-item active {% endif %}">
+				<a class="page-link" href="?page={{page_obj.paginator.num_pages}}">{{ page_obj.paginator.num_pages}} &raquo; </a>
+			</li>
+		{% endif %}
+
+	</ul> -->
+	</div>
+</div>
+
+<script src="{% static 'js/product_page.js' %}"></script>
+
+{% endblock %}
